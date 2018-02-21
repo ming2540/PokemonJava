@@ -9,10 +9,11 @@ public class Pokemon{
 	private String name;
 	private String sound;
 
-	public Pokemon(String name , String sound){
+	public Pokemon(String name , String sound ,String species){
 		weight = rand.nextInt(100)+1;
 		this.name = name;
 		this.sound = sound;
+		this.species = species;
 	}
 
 	public void eatFood(float weightIncrease){
