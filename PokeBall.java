@@ -9,15 +9,15 @@ public class PokeBall {
         this.typeOfPokeBall = type;
         if(this.typeOfPokeBall ==1){
              this.name = "PokeBall";
-             this.chance = 0.8;
+             this.chance = (float)0.8;
         }
         else if(this.typeOfPokeBall == 2){
             this.name = "GreatBall";
-            this.chance = 0.9;
+            this.chance = (float)0.9;
         }
         else if(this.typeOfPokeBall == 3){
             this.name = "UltraBall";
-            this.chance = 1.0;
+            this.chance = (float)1.0;
         }
 
     }

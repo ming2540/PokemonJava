@@ -4,8 +4,8 @@ public class Pidgey extends Pokemon{
 	public Pidgey(String name , int form){
 		if(form == 1)
 			super (name , "Caw!" , "Pidgey");
-		else (form ==2)
-			super (name , "Caw Caw !" , "Pigeon")
+		else if(form ==2)
+			super (name , "Caw Caw !" , "Pigeon");
 	}
 
 }

@@ -8,6 +8,7 @@ public class CommandParser {
 	private String command = "";
 	private String nameInput = "";
 	private String typeInput = "";
+	private Brush brush = new Brush(); 
 
 	public CommandParser(PokemonFarm pokemonFarm){
 		this.pokemonFarm = pokemonFarm;
@@ -18,7 +19,7 @@ public class CommandParser {
 		System.out.println("Welcome to PokemonGame");
 
 		while(!command.equals("exit")){
-			System.out.println("input command : add  ,show , feed  ,delete , exit");
+			System.out.println("input command : add  ,show , feed  ,delete , find (find new pokemon), exit ");
 			command = scanner.nextLine();
 
 			if(command.equals("add")){
@@ -43,6 +44,11 @@ public class CommandParser {
 				System.out.print("which one? (type 'all' for all) : ");
 				nameInput = scanner.nextLine();
 				pokemonFarm.feed(nameInput);
+			}
+
+			else if(command.equals("find")){
+				brush.brushEncounter();
+				
 			}
 
 		}
