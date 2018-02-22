@@ -15,6 +15,8 @@ public class PokemonFarm
 				pokemon = new Mew(pokemonName);
 		else if(pokemonType.equals("pidgey"))
 				pokemon = new Pidgey(pokemonName);
+		else if(pokemonType.equals("pigeon"))
+				pokemon = new Pigeon(pokemonName);
 
 		pokemons.add(pokemon);
 		System.out.println("Added");
@@ -49,8 +51,22 @@ public class PokemonFarm
 				pokemonList.eatFood(2);
 			}
 		}
+	}
+
+
+	public void rename(String nameInput, String pokemonInput){
+		for(Pokemon pokemonList : pokemons){
+			if(pokemonInput.equals(pokemonList.getName())){
+				pokemonList.setName(nameInput);
+			}
+		}
 
 	}
+
+
+
+
+
 
 
 

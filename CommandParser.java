@@ -51,6 +51,15 @@ public class CommandParser {
 				
 			}
 
+			else if(command.equals("rename")){
+				System.out.print("Which Pokemon? :");
+				typeInput = scanner.nextLine();
+				System.out.print("Inputname : ");
+				nameInput = scanner.nextLine();
+				pokemonFarm.rename(nameInput , typeInput);
+
+			}
+
 		}
 	}
 

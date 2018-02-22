@@ -1,4 +1,3 @@
-
 public class PokeBall {
 
     private int typeOfPokeBall ;

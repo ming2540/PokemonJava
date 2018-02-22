@@ -8,12 +8,12 @@ public class Pokemon{
 	private float weight;
 	private String name;
 	private String sound;
+	// private float gainWeightStep;
 
-	public Pokemon(String name , String sound ,String species){
+	public Pokemon(String name , String sound ){
 		weight = rand.nextInt(100)+1;
 		this.name = name;
 		this.sound = sound;
-		this.species = species;
 	}
 
 	public void eatFood(float weightIncrease){
@@ -31,5 +31,10 @@ public class Pokemon{
 	public float getWeight(){
 		return weight;
 	}
+	
+	public void setName(String nameInput){
+		this.name = nameInput;
+	}
+	
 
 }
