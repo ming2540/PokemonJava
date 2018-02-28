@@ -9,7 +9,7 @@ public class PokemonFarm
 	
 	public void add(String pokemonType , String pokemonName , Pokemon pokemonInput){
 		
-		if(isEmpty(pokemonType)){
+		if(pokemonType.isEmpty()){
 			pokemons.add(pokemonInput);
 		}
 		else {

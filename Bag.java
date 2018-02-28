@@ -5,9 +5,8 @@ import java.util.*;
 public class Bag
 {
 	ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
-	ArrayList<PokeBall> pokeBalls = new ArrayList<PokeBall>();
     
-    
+
 	public void add(Pokemon pokemonInput){
 		pokemons.add(pokemonInput);
 		System.out.println("Added to bag");
@@ -26,9 +25,11 @@ public class Bag
 	}
 	
     public Pokemon toFarm(){
-        Pokemon pokeBuffer;
+        Pokemon pokeBuffer = pokemons.get(pokemons.size()-1);
 
-        return 
-    }
-	
+        pokemons.remove(pokemons.get(pokemons.size()-1));
+
+        return pokeBuffer;
+	}
+		
 }

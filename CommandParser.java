@@ -6,12 +6,12 @@ import java.util.*;
 public class CommandParser {
 
 	Scanner scanner = new Scanner(System.in);
-	private PokemonFarm pokemonFarm = new PokemonFarm();
+	private PokemonFarm pokemonFarm ;
 	private String command = "";
 	private String nameInput = "";
 	private String typeInput = "";
 	private Brush brush;  
-	private Bag bag = new Bag();
+	private Bag bag ;
 
 
 
@@ -25,7 +25,7 @@ public class CommandParser {
 		System.out.println("Welcome to PokemonGame");
 
 		while(!command.equalsIgnoreCase("exit")){
-			System.out.println("input command : \n1.add \n2.show\n3.feed\n4.delete\n5.find (find new pokemon)\n6.rename\n7.exit ");
+			System.out.println("-----------------------------------\ninput command : \n1.add \n2.show\n3.feed\n4.delete\n5.find (find new pokemon)\n6.rename\n7.put(bag to farm)\n8..exit ");
 
 			command = scanner.nextLine();
 
@@ -64,7 +64,7 @@ public class CommandParser {
 					if(command.equalsIgnoreCase("catch")){
 						brush.catchPokemon();
 						if(brush.isCatchSuccess()==true){
-							System.out.print("It will go to your farm :");
+							System.out.print("It will go to your Bag :");
 							bag.add(brush.gotWildPokemon());
 							break;
 						}
@@ -86,7 +86,9 @@ public class CommandParser {
 			}
 
 			else if(command.equalsIgnoreCase("put")){
-				
+				while(bag.pokemons.size()>0){
+					pokemonFarm.add("" ,"",bag.toFarm());
+				}
 			}
 
 		}

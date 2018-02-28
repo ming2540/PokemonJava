@@ -46,7 +46,7 @@ public class Brush {
            
         }
         else {
-            System.out.println("It break free! try again");
+            System.out.println("It break free! try again" + mood);
         }
     }
 
