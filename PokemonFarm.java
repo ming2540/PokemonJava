@@ -9,13 +9,13 @@ public class PokemonFarm
 
 	public void add(String pokemonType , String pokemonName){
 
-		if(pokemonType.equals("lizardon"))
+		if(pokemonType.equalsIgnoreCase("lizardon"))
 				pokemon = new Lizardon(pokemonName);
-		else if(pokemonType.equals("mew"))
+		else if(pokemonType.equalsIgnoreCase("mew"))
 				pokemon = new Mew(pokemonName);
-		else if(pokemonType.equals("pidgey"))
+		else if(pokemonType.equalsIgnoreCase("pidgey"))
 				pokemon = new Pidgey(pokemonName);
-		else if(pokemonType.equals("pigeon"))
+		else if(pokemonType.equalsIgnoreCase("pigeon"))
 				pokemon = new Pigeon(pokemonName);
 
 		pokemons.add(pokemon);
@@ -43,12 +43,12 @@ public class PokemonFarm
 	public void feed(String nameInput){
 		if(nameInput.equals("all")){
 			for(Pokemon pokemonList : pokemons){
-				pokemonList.eatFood(2);
+				pokemonList.eatFood(pokemonList.gainWeightStep);
 			}
 		}
 		else for(Pokemon pokemonList : pokemons){
 			if(nameInput.equals(pokemonList.getName())){
-				pokemonList.eatFood(2);
+				pokemonList.eatFood(pokemonList.gainWeightStep);
 			}
 		}
 	}

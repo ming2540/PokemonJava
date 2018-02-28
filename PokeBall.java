@@ -6,18 +6,27 @@ public class PokeBall {
 
     public PokeBall(int type){
         this.typeOfPokeBall = type;
-        if(this.typeOfPokeBall ==1){
+        if(this.typeOfPokeBall ==0){
              this.name = "PokeBall";
              this.chance = (float)0.8;
         }
-        else if(this.typeOfPokeBall == 2){
+        else if(this.typeOfPokeBall == 1){
             this.name = "GreatBall";
             this.chance = (float)0.9;
         }
-        else if(this.typeOfPokeBall == 3){
+        else if(this.typeOfPokeBall == 2){
             this.name = "UltraBall";
             this.chance = (float)1.0;
         }
 
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public float getChance(){
+        return this.chance;
+    }
+
 }
