@@ -22,7 +22,8 @@ public class CommandParser {
 		System.out.println("Welcome to PokemonGame");
 
 		while(!command.equalsIgnoreCase("exit")){
-			System.out.println("input command : add  ,show , feed  ,delete , find (find new pokemon), exit ");
+			System.out.println("input command : \n1.add \n2.show\n3.feed\n4.delete\n5.find (find new pokemon)\n6.rename\n7.exit ");
+
 			command = scanner.nextLine();
 
 			if(command.equalsIgnoreCase("add")){
