@@ -11,10 +11,13 @@ public class CommandParser {
 	private String nameInput = "";
 	private String typeInput = "";
 	private Brush brush;  
+	private Bag bag = new Bag();
 
 
-	public CommandParser(PokemonFarm pokemonFarm){
+
+	public CommandParser(PokemonFarm pokemonFarm, Bag bag){
 		this.pokemonFarm = pokemonFarm;
+		this.bag = bag;
 	}
 
 	public void run(){
@@ -31,7 +34,7 @@ public class CommandParser {
 				typeInput = scanner.nextLine();
 				System.out.print("Enter it's name : ");
 				nameInput = scanner.nextLine();
-				pokemonFarm.add(typeInput , nameInput);
+				pokemonFarm.add(typeInput , nameInput , null);
 			}
 
 			else if(command.equalsIgnoreCase("delete")){
@@ -62,7 +65,7 @@ public class CommandParser {
 						brush.catchPokemon();
 						if(brush.isCatchSuccess()==true){
 							System.out.print("It will go to your farm :");
-							pokemonFarm.add(brush.gotWildPokemon().getName().substring(5), brush.gotWildPokemon().getName());
+							bag.add(brush.gotWildPokemon());
 							break;
 						}
 					}
@@ -80,6 +83,10 @@ public class CommandParser {
 				nameInput = scanner.nextLine();
 				pokemonFarm.rename(nameInput , typeInput);
 
+			}
+
+			else if(command.equalsIgnoreCase("put")){
+				
 			}
 
 		}
