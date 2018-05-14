@@ -5,12 +5,13 @@ public class Pokemon{
 
 	//attribute
 	Random rand = new Random();
+	private String type;
 	private float weight;
 	private String name;
 	private String sound;
 	protected float gainWeightStep;
 
-	public Pokemon(String name , String sound ){
+	public Pokemon(String name , String sound){
 		weight = rand.nextInt(100)+1;
 		this.name = name;
 		this.sound = sound;

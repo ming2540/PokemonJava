@@ -15,9 +15,10 @@ public class CommandParser {
 
 
 
-	public CommandParser(PokemonFarm pokemonFarm, Bag bag){
+	public CommandParser(PokemonFarm pokemonFarm, Bag bag , Brush brush){
 		this.pokemonFarm = pokemonFarm;
 		this.bag = bag;
+		this.brush = brush;
 	}
 
 	public void run(){
@@ -25,7 +26,7 @@ public class CommandParser {
 		System.out.println("Welcome to PokemonGame");
 
 		while(!command.equalsIgnoreCase("exit")){
-			System.out.println("-----------------------------------\ninput command : \n1.add \n2.show\n3.feed\n4.delete\n5.find (find new pokemon)\n6.rename\n7.put(bag to farm)\n8..exit ");
+			System.out.println("-----------------------------------\ninput command : \n1.add \n2.show\n3.feed\n4.delete\n5.find (find new pokemon)\n6.rename\n7.put(bag to farm)\n8.exit ");
 
 			command = scanner.nextLine();
 
