@@ -6,21 +6,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-
 import javax.swing.*;
 
-
+import javafx.scene.control.cell.ComboBoxTableCell;
 
 public class PokemonGame extends JFrame{
 
-	private JLabel statusLabel;
-	JComboBox pokemonListBox;
-	private ArrayList<Icon> images;
+	private JLabel nameLabel;
+	private JLabel specieLabel;
+	private JLabel weightLabel;
+	private JLabel soundLabel;
+	private JComboBox pokemonListBox;
 	private JTextField typeInput;
 	private JTextField nameinput;
 	private PokemonFarm pokemonFarm;
-	private String pokemonNames[];
-	private int comboBoxSize;
+	private ArrayList<String> pokemonNameList;
+	private JComboBox pokemonYed;
+	private Egg egg;
 
 	public PokemonGame(PokemonFarm pokemonFarm){
 		super("Pokemon Game");
@@ -40,7 +42,7 @@ public class PokemonGame extends JFrame{
 		JPanel windowPanel = new JPanel();
 		windowPanel.setLayout(new BoxLayout(windowPanel, BoxLayout.X_AXIS));
 		c.add(windowPanel);
-
+	
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel , BoxLayout.Y_AXIS));
 		windowPanel.add(leftPanel);
@@ -53,26 +55,42 @@ public class PokemonGame extends JFrame{
 
 
 		//----- left panel ---------
-		images = new ArrayList<Icon>();
+		Icon imagePokemon = new ImageIcon(getClass().getResource("/image/pokemon.png"));
 		Icon imageLizardon = new ImageIcon(getClass().getResource("/image/lizardon.png"));
+		Icon imagePidgey = new ImageIcon(getClass().getResource("/image/pidgey.png"));
+		Icon imagePigeon = new ImageIcon(getClass().getResource("/image/pigeon.png"));
+		Icon imageMew = new ImageIcon(getClass().getResource("/image/mew.png"));
+		Icon imageEgg =new ImageIcon(getClass().getResource("/image/egg.jpg"));
+
 		
 		JLabel imageChooser = new JLabel("");
-		imageChooser.setIcon(imageLizardon);
+		imageChooser.setIcon(imagePokemon);
 		leftPanel.add(imageChooser);
+		JLabel eggChooser = new JLabel("");
+		leftPanel.add(eggChooser);
 
-		statusLabel = new JLabel("What your Choices?");
-		leftPanel.add(statusLabel);
+		nameLabel = new JLabel("What your Choices?");
+		leftPanel.add(nameLabel);
+		specieLabel = new JLabel("");
+		leftPanel.add(specieLabel);
+		weightLabel = new JLabel("");
+		leftPanel.add(weightLabel);
+		soundLabel = new JLabel("");
+		leftPanel.add(soundLabel);
+		
 
-		pokemonNames = new String[10];
-		pokemonListBox = new JComboBox(pokemonNames);
-		//pokemonListBox.setMaximumRowCount(3);
+		pokemonNameList = new ArrayList<String>();
+		pokemonListBox = new JComboBox(pokemonNameList.toArray());
 		leftPanel.add(pokemonListBox);
-
 		//----- finish left panel -------
 
 		//------ right panel --------
-		typeInput = new JTextField(8);
+		JLabel inputYourType = new JLabel("input your type(lizardon , mew , pidgey ,pigeon)");
+		rightPanel.add(inputYourType);
+		typeInput = new JTextField(1);
 		rightPanel.add(typeInput);
+		JLabel inputYourName = new JLabel("input your pokemon name");
+		rightPanel.add(inputYourName); 
 		nameinput = new JTextField(8);
 		rightPanel.add(nameinput);
 
@@ -80,73 +98,95 @@ public class PokemonGame extends JFrame{
 		rightPanel.add(addButton);
 		JButton feedButton = new JButton("Feed Pokemon");
 		rightPanel.add(feedButton);
-		JButton deleteButton = new JButton("Kill Pokemon");
-		rightPanel.add(deleteButton);
-		JButton findButton = new JButton("Find new Pokemon");
-		rightPanel.add(findButton);
-		JButton renameButton = new JButton("rename Pokemon");
-		rightPanel.add(renameButton);
-		JButton exerciseButton = new JButton("Exercise Pokemon");
-		rightPanel.add(exerciseButton);
+		JButton yedButton = new JButton("Pokemon Yed");
+		rightPanel.add(yedButton);
+		JLabel chooseToYed = new JLabel("Choose other Pokemon To Yed");
+		rightPanel.add(chooseToYed);
+		pokemonYed = new JComboBox(pokemonNameList.toArray());
+		rightPanel.add(pokemonYed);
+		JButton hatchYourEgg = new JButton("Hatch your egg");
+		rightPanel.add(hatchYourEgg);
+
 		//--------finish right panel---------
 
-		//----Add Action Listener------
+		//----Add Action /Item Listener------
 		addButton.addActionListener(new ActionListener(){
 		
 			public void actionPerformed(ActionEvent e) {
 				pokemonFarm.add(typeInput.getText() , nameinput.getText() , null);
-				pokemonNames[comboBoxSize] = nameinput.getText();
-				comboBoxSize++;
-
-				if(typeInput.getText().equalsIgnoreCase("lizardon")){
-					images.add( new ImageIcon(getClass().getResource("/image/lizardon.png")) );
-				}
-				else if(typeInput.getText().equalsIgnoreCase("mew")){
-					images.add( new ImageIcon(getClass().getResource("/image/mew.png")) );
-				} 
-				else if(typeInput.getText().equalsIgnoreCase("pidgey")){
-					images.add( new ImageIcon(getClass().getResource("/image/pidgey.png")) );
-				}
-				else if(typeInput.getText().equalsIgnoreCase("pigeon")){
-					images.add( new ImageIcon(getClass().getResource("/image/pigeon.png")) );
-				}
+				// System.out.println(typeInput.getText() + " " + nameinput.getText());
+				pokemonListBox.addItem(nameinput.getText());
+				pokemonYed.addItem(nameinput.getText());
+				JOptionPane.showMessageDialog(null, "Add Successful!");
 			}
 		});
 
+		feedButton.addActionListener(new ActionListener(){
+		
+			public void actionPerformed(ActionEvent e) {
+				pokemonFarm.feed(pokemonListBox.getSelectedIndex());
+				weightLabel.setText("" + pokemonFarm.getPokemonWeight(pokemonListBox.getSelectedIndex()));
+			}
+		});	
+		
 		pokemonListBox.addItemListener(new ItemListener(){
 		
-			@Override
 			public void itemStateChanged(ItemEvent e) {
-				imageChooser.setIcon(images.get(pokemonListBox.getSelectedIndex()));
+				
+				nameLabel.setText("Name : " + pokemonFarm.getPokemonName(pokemonListBox.getSelectedIndex()));
+				specieLabel.setText("Specie : " +pokemonFarm.getPokemonSpecie(pokemonListBox.getSelectedIndex()));
+				weightLabel.setText("Weight : " + pokemonFarm.getPokemonWeight(pokemonListBox.getSelectedIndex()));
+				soundLabel.setText(pokemonFarm.getPokemonSound(pokemonListBox.getSelectedIndex()));
+
+				System.out.println(pokemonListBox.getSelectedIndex());
+
+				if(pokemonFarm.getPokemonSpecie(pokemonListBox.getSelectedIndex()).equalsIgnoreCase("lizardon"))
+					imageChooser.setIcon(imageLizardon);
+				else if(pokemonFarm.getPokemonSpecie(pokemonListBox.getSelectedIndex()).equalsIgnoreCase("mew"))
+					imageChooser.setIcon(imageMew);
+				else if(pokemonFarm.getPokemonSpecie(pokemonListBox.getSelectedIndex()).equalsIgnoreCase("pidgey"))
+					imageChooser.setIcon(imagePidgey);
+				else if(pokemonFarm.getPokemonSpecie(pokemonListBox.getSelectedIndex()).equalsIgnoreCase("pigeon"))
+					imageChooser.setIcon(imagePigeon);
+			}
+		});
+	
+		yedButton.addActionListener(new ActionListener(){
+		
+			public void actionPerformed(ActionEvent e) {
+				if(pokemonListBox.getSelectedIndex() == pokemonYed.getSelectedIndex())
+					JOptionPane.showMessageDialog(null , "Can't yed it's self");
+				else if(pokemonFarm.getPokemonSpecie(pokemonListBox.getSelectedIndex()).equals(pokemonFarm.getPokemonSpecie(pokemonYed.getSelectedIndex()))){
+					egg = new Egg(pokemonFarm.getPokemonSpecie(pokemonListBox.getSelectedIndex()));
+					eggChooser.setIcon(imageEgg);
+					JOptionPane.showMessageDialog(null, "Yed successful!");
+				}
+				else 
+					JOptionPane.showMessageDialog(null, "Can't Yed other Species");
+					
 			}
 		});
 
+		hatchYourEgg.addActionListener(new ActionListener(){
+		
+			public void actionPerformed(ActionEvent e) {
+				pokemonFarm.add(egg.getEgg(), "egg pokemon", null);
+				pokemonListBox.addItem("egg pokemon");
+				pokemonYed.addItem(nameinput.getText());
+				JOptionPane.showMessageDialog(null, "hatch Successful!");
+				eggChooser.setIcon(null);
+			}
+		});
 
-
-
-
-
-
-
-
-
-
+		//---------- end Add Action -------
 
 		setVisible(true);
 		pack();
+	
 	}
 
 	//--------- Action ------------
-	public void addPokemon(){
-
-
-	}
-
-
-
-
-
-
+	
 
 	public static void main(String[] args) {
 		

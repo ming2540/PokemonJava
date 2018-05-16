@@ -25,7 +25,7 @@ public class PokemonFarm
 			pokemons.add(pokemon);
 		}
 		
-		System.out.println("Added");
+		System.out.print("Added");
 		
 	}
 	
@@ -46,17 +46,8 @@ public class PokemonFarm
 		}
 	}
 	
-	public void feed(String nameInput){
-		if(nameInput.equals("all")){
-			for(Pokemon pokemonList : pokemons){
-				pokemonList.eatFood(pokemonList.gainWeightStep);
-			}
-		}
-		else for(Pokemon pokemonList : pokemons){
-			if(nameInput.equals(pokemonList.getName())){
-				pokemonList.eatFood(pokemonList.gainWeightStep);
-			}
-		}
+	public void feed(int index){
+		pokemons.get(index).eatFood();
 	}
 	
 	
@@ -68,10 +59,22 @@ public class PokemonFarm
 		}
 		
 	}
+
+	public String getPokemonName( int index){
+		return pokemons.get(index).getName();
+	}
+
+	public String getPokemonSpecie(int index){
+		return pokemons.get(index).getSpecies();
+	}
+
+	public float getPokemonWeight(int index){
+		return pokemons.get(index).getWeight();
+	}
 	
-	
-	
-	
+	public String getPokemonSound(int index){
+		return "This " + pokemons.get(index).getName() + " Say " + pokemons.get(index).makeSound();
+	}
 	
 	
 	

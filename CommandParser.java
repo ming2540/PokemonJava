@@ -51,7 +51,7 @@ public class CommandParser {
 			else if(command.equalsIgnoreCase("feed")){
 				System.out.print("which one? (type 'all' for all) : ");
 				nameInput = scanner.nextLine();
-				pokemonFarm.feed(nameInput);
+				// pokemonFarm.feed(nameInput);
 			}
 
 			else if(command.equalsIgnoreCase("find")){

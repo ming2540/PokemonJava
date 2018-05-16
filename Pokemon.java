@@ -10,20 +10,26 @@ public class Pokemon{
 	private String name;
 	private String sound;
 	protected float gainWeightStep;
+	protected  String species;
 
-	public Pokemon(String name , String sound){
+	public Pokemon(String name , String species , String sound){
 		weight = rand.nextInt(100)+1;
 		this.name = name;
 		this.sound = sound;
+		this.species = species;
 		this.gainWeightStep = 2;
 	}
 
-	public void eatFood(float weightIncrease){
-		weight +=  weightIncrease;
+	public void eatFood(){
+		weight +=  this.gainWeightStep;
 	}
 
 	public String getName(){
 		return name;
+	}
+
+	public String getSpecies(){
+		return species;
 	}
 
 	public String makeSound(){
