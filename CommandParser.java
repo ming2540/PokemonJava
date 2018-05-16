@@ -77,14 +77,14 @@ public class CommandParser {
 				
 			}
 
-			else if(command.equalsIgnoreCase("rename")){
-				System.out.print("Which Pokemon? :");
-				typeInput = scanner.nextLine();
-				System.out.print("Inputname : ");
-				nameInput = scanner.nextLine();
-				pokemonFarm.rename(nameInput , typeInput);
+			// else if(command.equalsIgnoreCase("rename")){
+			// 	System.out.print("Which Pokemon? :");
+			// 	typeInput = scanner.nextLine();
+			// 	System.out.print("Inputname : ");
+			// 	nameInput = scanner.nextLine();
+			// 	pokemonFarm.rename(nameInput , typeInput);
 
-			}
+			// }
 
 			else if(command.equalsIgnoreCase("put")){
 				while(bag.pokemons.size()>0){

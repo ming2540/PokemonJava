@@ -25,7 +25,7 @@ public class PokemonFarm
 			pokemons.add(pokemon);
 		}
 		
-		System.out.print("Added");
+		System.out.println("Added");
 		
 	}
 	
@@ -51,13 +51,8 @@ public class PokemonFarm
 	}
 	
 	
-	public void rename(String nameInput, String pokemonInput){
-		for(Pokemon pokemonList : pokemons){
-			if(pokemonInput.equals(pokemonList.getName())){
-				pokemonList.setName(nameInput);
-			}
-		}
-		
+	public void rename(int index , String input){
+		pokemons.get(index).setName(input);	
 	}
 
 	public String getPokemonName( int index){

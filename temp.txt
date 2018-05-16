@@ -23,12 +23,10 @@ public class PokemonGame extends JFrame{
 	private ArrayList<String> pokemonNameList;
 	private JComboBox pokemonYed;
 	private Egg egg;
-	private int size;
 
 	public PokemonGame(PokemonFarm pokemonFarm){
 		super("Pokemon Game");
 
-		size = 1 ;
 		this.pokemonFarm = pokemonFarm;
 
 		Container c = getContentPane();
@@ -108,25 +106,18 @@ public class PokemonGame extends JFrame{
 		rightPanel.add(pokemonYed);
 		JButton hatchYourEgg = new JButton("Hatch your egg");
 		rightPanel.add(hatchYourEgg);
-	
-		
+
 		//--------finish right panel---------
 
 		//----Add Action /Item Listener------
 		addButton.addActionListener(new ActionListener(){
 		
 			public void actionPerformed(ActionEvent e) {
-
-				if(isNotDuplicate(nameinput.getText())){
-					pokemonFarm.add(typeInput.getText() , nameinput.getText() , null);
-					// System.out.println(typeInput.getText() + " " + nameinput.getText());
-					pokemonNameList.add(nameinput.getText());
-					pokemonListBox.addItem(nameinput.getText());
-					pokemonYed.addItem(nameinput.getText());
-					JOptionPane.showMessageDialog(null, "Add Successful!");
-				}
-				else 
-					JOptionPane.showMessageDialog(null, "Can't add pokemon with a same name");
+				pokemonFarm.add(typeInput.getText() , nameinput.getText() , null);
+				// System.out.println(typeInput.getText() + " " + nameinput.getText());
+				pokemonListBox.addItem(nameinput.getText());
+				pokemonYed.addItem(nameinput.getText());
+				JOptionPane.showMessageDialog(null, "Add Successful!");
 			}
 		});
 
@@ -134,7 +125,7 @@ public class PokemonGame extends JFrame{
 		
 			public void actionPerformed(ActionEvent e) {
 				pokemonFarm.feed(pokemonListBox.getSelectedIndex());
-				weightLabel.setText("Weight : " + pokemonFarm.getPokemonWeight(pokemonListBox.getSelectedIndex()));
+				weightLabel.setText("" + pokemonFarm.getPokemonWeight(pokemonListBox.getSelectedIndex()));
 			}
 		});	
 		
@@ -179,12 +170,11 @@ public class PokemonGame extends JFrame{
 		hatchYourEgg.addActionListener(new ActionListener(){
 		
 			public void actionPerformed(ActionEvent e) {
-				pokemonFarm.add(egg.getEgg() , "egg pokemon " + size, null);
-				pokemonListBox.addItem("egg pokemon" + size);
-				pokemonYed.addItem("egg pokemon" + size);
+				pokemonFarm.add(egg.getEgg() , "egg pokemon", null);
+				pokemonListBox.addItem("egg pokemon");
+				pokemonYed.addItem(nameinput.getText());
 				JOptionPane.showMessageDialog(null, "hatch Successful!");
 				eggChooser.setIcon(null);
-				size++;
 			}
 		});
 
@@ -196,20 +186,7 @@ public class PokemonGame extends JFrame{
 	}
 
 	//--------- Action ------------
-	public Boolean isNotDuplicate(String nameCheck){
-
-		for(String name : pokemonNameList){
-			if(name.equals(nameCheck))
-				return false;
-		}
-		return true;
-
-	}
-
-
-	//--------- end Action--------
 	
-
 
 	public static void main(String[] args) {
 		
